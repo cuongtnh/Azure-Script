@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_HCI_DC_01_name": {
+            "value": null
+        },
+        "disks_HCI_DC_01_disk1_65b5a36f55144c21afb1fe14375dfc59_externalid": {
+            "value": null
+        },
+        "networkInterfaces_hci_dc_01808_externalid": {
+            "value": null
+        }
+    }
+}

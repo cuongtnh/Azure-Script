@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_HCI_Node_02_name": {
+            "value": null
+        },
+        "disks_HCI_Node_02_disk1_0c81f6b9191744778b93bde5a8568712_externalid": {
+            "value": null
+        },
+        "disks_HCI_Node_02_Disk1_externalid": {
+            "value": null
+        },
+        "disks_HCI_Node_02_Disk2_externalid": {
+            "value": null
+        },
+        "disks_HCI_Node_02_Disk3_externalid": {
+            "value": null
+        },
+        "networkInterfaces_hci_node_02189_externalid": {
+            "value": null
+        },
+        "networkInterfaces_hci_node_02_02_externalid": {
+            "value": null
+        }
+    }
+}

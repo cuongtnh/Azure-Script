@@ -1,0 +1,76 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_HCI_DC_01_name": {
+            "defaultValue": "HCI-DC-01",
+            "type": "String"
+        },
+        "disks_HCI_DC_01_disk1_65b5a36f55144c21afb1fe14375dfc59_externalid": {
+            "defaultValue": "/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-EA817A-PLAYGROUND-SANDBOX/providers/Microsoft.Compute/disks/HCI-DC-01_disk1_65b5a36f55144c21afb1fe14375dfc59",
+            "type": "String"
+        },
+        "networkInterfaces_hci_dc_01808_externalid": {
+            "defaultValue": "/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-ea817a-playground-sandbox/providers/Microsoft.Network/networkInterfaces/hci-dc-01808",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-07-01",
+            "name": "[parameters('virtualMachines_HCI_DC_01_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2019-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_HCI_DC_01_name'), '_disk1_65b5a36f55144c21afb1fe14375dfc59')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS",
+                            "id": "[parameters('disks_HCI_DC_01_disk1_65b5a36f55144c21afb1fe14375dfc59_externalid')]"
+                        },
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_HCI_DC_01_name')]",
+                    "adminUsername": "AzureUser",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_hci_dc_01808_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://1ea817aplaygroundsandbox.blob.core.windows.net/"
+                    }
+                }
+            }
+        }
+    ]
+}
